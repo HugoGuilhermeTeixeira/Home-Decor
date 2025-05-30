@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home - Home Decor{% endblock title %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold mb-4">Welcome to Home Decor</h1>
+
+    <!-- Hero Banner (Placeholder) -->
+    <div class="bg-gray-200 p-8 text-center mb-8">
+        <h2 class="text-2xl mb-2">Premium Headboards</h2>
+        <p class="mb-4">Discover your perfect style.</p>
+        <a href="#" class="bg-blue-500 text-white px-6 py-2 rounded">Explore Our Headboards</a>
+    </div>
+
+    <!-- Featured Products Section -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Featured Products</h2>
+        {% if featured_products %}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {% for product in featured_products %}
+            <div class="border p-4 rounded shadow">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-48 object-cover mb-2">
+                {% else %}
+                    <div class="w-full h-48 bg-gray-100 flex items-center justify-center mb-2">
+                        <span class="text-gray-500">No image</span>
+                    </div>
+                {% endif %}
+                <h3 class="text-xl font-semibold">{{ product.name }}</h3>
+                <p class="text-gray-700">${{ product.price }}</p>
+                <!-- Add link to product detail page later -->
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No featured products to display currently.</p>
+        {% endif %}
+    </section>
+
+    <!-- Blog Snippet Section -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">From Our Blog</h2>
+        {% if latest_articles %}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {% for article in latest_articles %}
+            <div class="border p-4 rounded shadow">
+                {% if article.featured_image %}
+                    <img src="{{ article.featured_image.url }}" alt="{{ article.title }}" class="w-full h-40 object-cover mb-2">
+                {% else %}
+                     <div class="w-full h-40 bg-gray-100 flex items-center justify-center mb-2">
+                        <span class="text-gray-500">No image</span>
+                    </div>
+                {% endif %}
+                <h3 class="text-lg font-semibold">{{ article.title }}</h3>
+                <p class="text-sm text-gray-600">Published on {{ article.created_at|date:"M d, Y" }}</p>
+                <!-- Add link to article detail page later -->
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No recent blog articles to display.</p>
+        {% endif %}
+    </section>
+
+    <!-- Customer Testimonials (Placeholder) -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Customer Testimonials</h2>
+        <p class="text-gray-600">Testimonials will be displayed here.</p>
+    </section>
+</div>
+{% endblock content %}

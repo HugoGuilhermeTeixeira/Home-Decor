@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Decor</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <p>&copy; 2023 Home Decor</p>
+        <a href="{% url 'pages:privacy_policy' %}">Privacy Policy</a> |
+        <a href="{% url 'pages:terms_of_use' %}">Terms of Use</a>
+    </footer>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
